@@ -5,7 +5,7 @@ import App from '../App.vue'
 
 describe('App', () => {
   const wrapper = mount(App)
-  
+
   it('should render properly', () => {
     expect(wrapper.text()).toContain('Coding Test')
   })
