@@ -25,7 +25,7 @@ const result = computed(()=> {
 
   <main>
     <div>
-    <p>source:</p>
+    <p>source (json):</p>
     <textarea name="message" rows="30" cols="30" v-model="placeholder"></textarea>
   </div>
   <div>
