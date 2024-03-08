@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
-import { removeConsecutiveDuplicates } from '@/lib/coding_test_consecutive_new.ts'
+import { removeConsecutiveDuplicates } from '@/lib/coding_test_consecutive_new'
 const placeholder = ref<String>(JSON.stringify(JSON.parse(`{
   "datapoint_1": [1.0, 2.3, 1.2, 3.4, 2.0, 2.0, 3.1, 2.3],
   "datapoint_2": [true, true, true, false, true, false],
@@ -9,7 +9,7 @@ const placeholder = ref<String>(JSON.stringify(JSON.parse(`{
 const result = computed(()=> {
   let result = ''
   try {
-    result = JSON.stringify(removeConsecutiveDuplicates(JSON.parse(placeholder.value)), null, 2)
+    result = JSON.stringify(removeConsecutiveDuplicates(JSON.parse(placeholder.value as string)), null, 2)
   } catch (error) {
     result = 'invalid json'
   }
