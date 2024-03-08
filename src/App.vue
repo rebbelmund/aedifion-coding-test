@@ -6,12 +6,14 @@ const placeholder = ref<String>(JSON.stringify(JSON.parse(`{
   "datapoint_2": [true, true, true, false, true, false],
   "datapoint_3": ["active", "inactive", "active", "active", "inactive", "inactive"]
 }`), null, 2))
+const INVALID_HINT = 'invalid json'
+const resultIsInvalid = computed(()=>result.value===INVALID_HINT)
 const result = computed(()=> {
   let result = ''
   try {
     result = JSON.stringify(removeConsecutiveDuplicates(JSON.parse(placeholder.value as string)), null, 2)
   } catch (error) {
-    result = 'invalid json'
+    result = INVALID_HINT
   }
   return result
   })
@@ -26,11 +28,11 @@ const result = computed(()=> {
   <main>
     <div>
     <p>source (json):</p>
-    <textarea name="message" rows="30" cols="30" v-model="placeholder"></textarea>
+    <textarea rows="30" cols="30" v-model="placeholder"></textarea>
   </div>
   <div>
   <p>removeConsecutiveDuplicates:</p>
-    <p class="result">{{ result }}</p>
+    <p class="result" :class="{invalid: resultIsInvalid}">{{ result }}</p>
   </div>
   </main>
 </template>
@@ -58,6 +60,10 @@ main {
     font-size: 1rem;
     margin: 0;
     white-space: pre;
+
+    &.invalid {
+      color: red;
+    }
   }    
 }
 </style>
